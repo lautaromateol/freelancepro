@@ -1,8 +1,25 @@
-import AppLayout from "./src/ui/AppLayout"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import AppLayout from "./ui/AppLayout"
+import Dashboard from "./pages/Dashboard"
+import Projects from "./pages/Projects"
+import Project from "./pages/Project"
+import Task from "./pages/Task"
+import NotFound from "./ui/NotFound"
 
 function App() {
   return (
-    <AppLayout/>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<Navigate to="dashboard"/>} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="project/:projectId" element={<Project />} />
+          <Route path="task/:taskId" element={<Task />} />
+        </Route>
+        <Route path="*" element={<NotFound />}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
