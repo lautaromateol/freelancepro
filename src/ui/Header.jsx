@@ -1,5 +1,7 @@
 export default function Header() {
   return (
-    <header>Header</header>
+    <header className="flex items-center bg-slate-50 h-[8rem] border-b border-b-1">
+      Header
+    </header>
   )
 }
