@@ -7,7 +7,7 @@ export default function AppLayout() {
     <div className="grid grid-cols-[28rem_1fr] grid-rows-[auto_1fr] h-screen">
       <Header />
       <Nav />
-      <main>
+      <main className="p-16">
         <Outlet />
       </main>
     </div>
