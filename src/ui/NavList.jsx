@@ -1,9 +1,9 @@
-import { HiOutlineBriefcase, HiOutlineCheck, HiOutlineHome } from "react-icons/hi";
+import { HiOutlineBriefcase, HiOutlineCalendar, HiOutlineHome } from "react-icons/hi";
 import NavItem from "./NavItem";
 
 const pages = [
   {
-    name: "Home",
+    name: "Dashboard",
     to: "/dashboard",
     icon: <HiOutlineHome />
   },
@@ -13,10 +13,10 @@ const pages = [
     icon: <HiOutlineBriefcase />
   },
   {
-    name: "Tasks",
-    to: "/tasks",
-    icon: <HiOutlineCheck />
-  }
+    name: "Calendar",
+    to: "/calendar",
+    icon: <HiOutlineCalendar />
+  },
 ]
 
 export default function NavList() {
