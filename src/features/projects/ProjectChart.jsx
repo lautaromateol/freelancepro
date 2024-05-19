@@ -1,5 +1,16 @@
+import { useNavigate } from "react-router-dom"
+import { HiOutlineArrowUpOnSquare, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2"
+import Menus from "../../ui/Menus"
+import Modal from "../../ui/Modal"
+import EditProjectForm from "./EditProjectForm"
+import { useDeleteProject } from "./useDeleteProject"
+
 /* eslint-disable react/prop-types */
-export default function ProjectChart({project}) {
+export default function ProjectChart({ project }) {
+
+  const navigate = useNavigate()
+
+  const { deleteProject, isPending } = useDeleteProject()
 
   const endDate = new Date(project?.finishDate)
   const day = endDate.getDate()
@@ -16,7 +27,29 @@ export default function ProjectChart({project}) {
           <h4 className="text-4xl font-bold mb-1">{project.name}</h4>
           <span className="text-xl text-gray-600">{project.status}</span>
         </div>
-        <button className="font-bold text-2xl">...</button>
+        <Modal>
+          <Menus>
+            <Menus.Menu>
+              <Menus.Toggle id={project.id} />
+              <Menus.List id={project.id}>
+                <Menus.Button icon={<HiOutlineArrowUpOnSquare />} onClick={() => navigate(`/project/${project.id}`)}>
+                  Visit Project Page
+                </Menus.Button>
+                <Modal.Opens opens="edit-form">
+                  <Menus.Button icon={<HiOutlinePencil />}>
+                    Edit Project
+                  </Menus.Button>
+                </Modal.Opens>
+                <Menus.Button onClick={() => deleteProject(project.id)} icon={<HiOutlineTrash />}>
+                  Delete Project
+                </Menus.Button>
+              </Menus.List>
+              <Modal.Window window="edit-form">
+                <EditProjectForm project={project} />
+              </Modal.Window>
+            </Menus.Menu>
+          </Menus>
+        </Modal>
       </div>
       <div className="flex justify-between items-center">
         <div>
