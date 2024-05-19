@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { Toaster } from "react-hot-toast"
 import AppLayout from "./ui/AppLayout"
 import Dashboard from "./pages/Dashboard"
 import Projects from "./pages/Projects"
@@ -19,6 +20,15 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            fontSize: "16px"
+          }
+        }}
+      />
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
