@@ -44,7 +44,7 @@ export default function CreateProjectForm({ onCloseModal }) {
           <Label htmlFor="description">Description</Label>
           <Textarea rows={5} id="description" register={register} disabled={isPending} />
           <div className="h-5 text-danger">
-            {errors?.name?.message && <p>{errors.description.message}</p>}
+            {errors?.description?.message && <p>{errors.description.message}</p>}
           </div>
         </FormRow>
         <div className="grid grid-cols-4 gap-4">
@@ -52,14 +52,14 @@ export default function CreateProjectForm({ onCloseModal }) {
             <Label htmlFor="startDate">Start Date</Label>
             <Input type="date" id="startDate" register={register} disabled={isPending} />
             <div className="h-5 text-danger">
-            {errors?.name?.message && <p>{errors.startDate.message}</p>}
+            {errors?.startDate?.message && <p>{errors.startDate.message}</p>}
           </div>
           </FormRow>
           <FormRow className="col-span-2">
             <Label htmlFor="finishDate">Finish Date</Label>
             <Input type="date" id="finishDate" register={register} disabled={isPending} />
             <div className="h-5 text-danger">
-            {errors?.name?.message && <p>{errors.finishDate.message}</p>}
+            {errors?.finishDate?.message && <p>{errors.finishDate.message}</p>}
           </div>
           </FormRow>
         </div>
