@@ -1,17 +1,22 @@
+import { RESULTS_PER_PAGE } from "../utils/constants"
 import { supabase } from "./supabase"
 
-export async function getProjects() {
+export async function getProjects({ page }) {
 
   const userId = 1
 
-  const { data: projects, error } = await supabase
+  const from = (page - 1) * RESULTS_PER_PAGE
+  const to = page * RESULTS_PER_PAGE - 1
+
+  const { data: projects, count, error } = await supabase
     .from('projects')
-    .select('*')
+    .select('*', { count: "exact" })
     .eq("user_id", userId)
+    .range(from, to)
 
   if (error) throw new Error(error)
 
-  return projects
+  return { projects, count }
 
 }
 

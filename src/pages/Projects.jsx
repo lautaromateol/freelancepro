@@ -4,10 +4,11 @@ import PageHeading from "../ui/PageHeader"
 import PageSubHeading from "../ui/PageSubHeading"
 import ProjectChart from "../features/projects/ProjectChart"
 import Spinner from "../ui/Spinner"
+import Paginate from "../ui/Paginate"
 
 export default function Projects() {
 
-  const { projects, isPending } = useProjects()
+  const { projects, isPending, count } = useProjects()
 
   if (isPending) return <Spinner />
 
@@ -27,6 +28,7 @@ export default function Projects() {
           <ProjectChart project={project} key={project.id} />
         ))}
       </div>
+      <Paginate count={count} />
     </PageSection>
   )
 }
