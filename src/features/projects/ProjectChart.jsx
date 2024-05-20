@@ -4,27 +4,21 @@ import Menus from "../../ui/Menus"
 import Modal from "../../ui/Modal"
 import EditProjectForm from "./EditProjectForm"
 import { useDeleteProject } from "./useDeleteProject"
+import { formatDate } from "../../utils/helpers"
+import ProgressBar from "../tasks/ProgressBar"
 
 /* eslint-disable react/prop-types */
 export default function ProjectChart({ project }) {
 
   const navigate = useNavigate()
 
-  const { deleteProject, isPending } = useDeleteProject()
-
-  const endDate = new Date(project?.finishDate)
-  const day = endDate.getDate()
-  const month = endDate.getMonth() + 1
-  const year = endDate.getFullYear()
-  const formatedDay = day.toString().padStart(2, "0")
-  const formatedMonth = month.toString().padStart(2, "0")
-  const formatedDate = `${formatedDay}/${formatedMonth}/${year}`
+  const { deleteProject } = useDeleteProject()
 
   return (
     <div className="flex flex-col justify-between bg-slate-50 rounded-lg shadow-sm border border-1 min-h-[16rem] p-8">
       <div className="flex justify-between items-center">
         <div>
-          <h4 className="text-4xl font-bold mb-1">{project.name}</h4>
+          <h4 className="text-4xl font-semibold mb-1">{project.name}</h4>
           <span className="text-xl text-gray-600">{project.status}</span>
         </div>
         <Modal>
@@ -32,7 +26,7 @@ export default function ProjectChart({ project }) {
             <Menus.Menu>
               <Menus.Toggle id={project.id} />
               <Menus.List id={project.id}>
-                <Menus.Button icon={<HiOutlineArrowUpOnSquare />} onClick={() => navigate(`/project/${project.id}`)}>
+                <Menus.Button icon={<HiOutlineArrowUpOnSquare />} onClick={() => navigate(`/projects/${project.id}`)}>
                   Visit Project Page
                 </Menus.Button>
                 <Modal.Opens opens="edit-form">
@@ -52,13 +46,13 @@ export default function ProjectChart({ project }) {
         </Modal>
       </div>
       <div className="flex justify-between items-center">
-        <div>
-          <p className="text-2xl">Progress</p>
-          <span>Bar</span>
+        <div className="w-2/3">  
+          <p className="text-2xl mb-2">Progress</p>
+          <ProgressBar progress={50} />
         </div>
         <div>
-          <p className="text-2xl">Delivery Date</p>
-          <span className="text-xl text-gray-600">{formatedDate}</span>
+          <p className="text-2xl mb-2">Delivery Date</p>
+          <span className="text-xl text-gray-600">{formatDate(project.finishDate)}</span>
         </div>
       </div>
     </div>
