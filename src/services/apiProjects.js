@@ -20,6 +20,19 @@ export async function getProjects({ page }) {
 
 }
 
+export async function getProject(id) {
+
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .eq("id", id)
+
+  if (error) throw new Error(error)
+
+  return data[0]
+
+}
+
 export async function createProject(project) {
 
   const { data, error } = await supabase
@@ -36,6 +49,11 @@ export async function createProject(project) {
 }
 
 export async function deleteProject(id) {
+
+  await supabase
+    .from("tasks")
+    .delete()
+    .eq("projectId", id)
 
   const { data, error } = await supabase
     .from('projects')
