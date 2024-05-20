@@ -37,7 +37,7 @@ export default function EditProjectForm({ project, onCloseModal }) {
           </div>
         </FormRow>
         <FormRow>
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">Notes</Label>
           <Textarea rows={5} id="description" register={register} disabled={isPending} />
           <div className="h-5 text-danger">
             {errors?.description?.message && <p>{errors.description.message}</p>}
