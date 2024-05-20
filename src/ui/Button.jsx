@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-export default function Button({ children, onClick, type, disabled = false, size = "normal", flex = false }) {
+export default function Button({ children, onClick, type, disabled = false, size = "normal", style }) {
   return (
     <button
       disabled={disabled}
       type={type}
-      className={`${flex && "flex items-center justify-center gap-2"} ${size === "normal" ? "py-4 px-2" : "p-2"} text-slate-50 bg-primary text-2xl font-medium rounded-lg w-full hover:bg-tint transition-colors`}
+      className={`${size === "normal" ? "px-4 py-2" : "p-2"} ${style === "danger" ? "bg-red-500 hover:bg-red-700" : "bg-primary hover:bg-tint"} text-slate-50 text-2xl rounded-lg w-full transition-colors`}
       onClick={onClick}>
       {children}
     </button>
