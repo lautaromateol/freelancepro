@@ -35,7 +35,7 @@ function App() {
             <Route index element={<Navigate to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="projects" element={<Projects />} />
-            <Route path="project/:projectId" element={<Project />} />
+            <Route path="projects/:projectId" element={<Project />} />
             <Route path="task/:taskId" element={<Task />} />
           </Route>
           <Route path="*" element={<NotFound />} />
