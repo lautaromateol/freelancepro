@@ -13,17 +13,29 @@ export async function getTasks(projectId) {
 
 }
 
-// export async function createTask(task) {
+export async function createTask(task) {
 
-//   const { data, error } = await supabase
-//     .from('tasks')
-//     .insert([
-//       task,
-//     ])
-//     .select()
+  const { data, error } = await supabase
+    .from('tasks')
+    .insert([
+      task,
+    ])
+    .select()
 
-//   if (error) throw new Error(error)
+  if (error) throw new Error(error)
 
-//   return data
+  return data
 
-// }
+}
+
+export async function updateTask(id, task) {
+
+  const { data, error } = await supabase
+    .from('tasks')
+    .update(task)
+    .eq("id", id)
+
+  if(error) throw new Error(error)
+
+  return data
+}
