@@ -2,7 +2,6 @@
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
 import { RESULTS_PER_PAGE } from "../utils/constants";
-import Button from "./Button";
 
 export default function Paginate({count}) {
 
@@ -16,14 +15,18 @@ export default function Paginate({count}) {
 
   const end = currentPage === totalPages ? count : currentPage * RESULTS_PER_PAGE
 
+  const disabledPrev = currentPage === 1
+  
+  const disabledNext = currentPage === totalPages
+
   function handlePrevious() {
-    if(currentPage === 1) return
+    if(disabledPrev) return
     searchParams.set("page", currentPage - 1)
     setSearchParams(searchParams)
   }
 
   function handleNext() {
-    if(currentPage === totalPages) return
+    if(disabledNext) return
     searchParams.set("page", currentPage + 1)
     setSearchParams(searchParams)
   }
@@ -31,15 +34,15 @@ export default function Paginate({count}) {
   return (
     <div className="flex justify-between items-center text-2xl">
       <p>Showing <strong>{start}-{end}</strong> of <strong>{count}</strong> results</p>
-      <div className="flex items-center gap-2">
-        <Button onClick={handlePrevious} flex={true} size="small">
+      <div className="flex items-center justify-center gap-2">
+        <button disabled={disabledPrev} onClick={handlePrevious} className={`${disabledPrev ? "cursor-not-allowed" : " text-white bg-primary hover:bg-tint transition-colors"} p-2 font-medium flex items-center gap-2 rounded-lg`}>
           <HiOutlineChevronLeft />
           Previous
-        </Button>
-        <Button onClick={handleNext} flex={true} size="small">
+        </button>
+        <button disabled={disabledNext} onClick={handleNext} className={`${disabledNext ? "cursor-not-allowed" : " text-white bg-primary hover:bg-tint transition-colors"} p-2 font-medium flex items-center gap-2 rounded-lg`}>
           Next
           <HiOutlineChevronRight />
-          </Button>
+          </button>
       </div>
     </div>
   )
