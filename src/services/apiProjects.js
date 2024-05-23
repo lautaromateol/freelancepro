@@ -55,6 +55,11 @@ export async function deleteProject(id) {
     .delete()
     .eq("projectId", id)
 
+  await supabase
+    .from("expenses")
+    .delete()
+    .eq("projectId", id)
+
   const { data, error } = await supabase
     .from('projects')
     .delete()
