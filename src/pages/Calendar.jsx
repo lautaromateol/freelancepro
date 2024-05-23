@@ -57,10 +57,10 @@ const renderEventContent = (eventInfo) => {
   const [projectName] = title.split(title.split(" ").includes("due") ? " due" : " start")
 
   return (
-    <Link to={`/projects/${eventInfo.event.id}`} className="flex items-center justify-center mx-auto bg-slate-100 px-4 py-2 rounded-lg border shadow-sm gap-4 cursor-pointer">
+    <Link to={`/projects/${eventInfo.event.id}`} className="flex items-center justify-center mx-auto bg-slate-100 px-2 py-1 rounded-lg border shadow-sm gap-4 cursor-pointer">
       <HiOutlineCalendar className={`${title.split(" ").includes("due") ? "text-red-500" : "text-green-500"} text-5xl`} />
       <div className="flex flex-col items-start">
-        <p className="text-2xl font-medium">{projectName}</p>
+        <p className="text-xl font-medium text-wrap">{projectName}</p>
         <span className="text-xl">{`${title.split(" ").includes("due") ? "Due" : "Start"} date`}</span>
       </div>
     </Link>
