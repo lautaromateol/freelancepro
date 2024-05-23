@@ -22,6 +22,7 @@ export default function ExpenseRow({ expense }) {
       <div>{formatDate(expense.created_at)}</div>
       <div>{expense.description}</div>
       <div>{expense.ammount.toLocaleString("en-US", { style: "currency", currency: "USD" })}</div>
+      <div>{expense.category}</div>
       <div className="text-white">
         <span className={`${checked ? "bg-green-500" : "bg-yellow-500"} inline-block text-center w-2/3 px-2 py-1 rounded-full`}>
           {expense.status}
