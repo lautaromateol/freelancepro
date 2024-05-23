@@ -11,3 +11,23 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Estilos para navegadores basados en WebKit */
+::-webkit-scrollbar {
+  width: 5px; /* Ancho de la barra de desplazamiento vertical */
+  height: 5px; /* Altura de la barra de desplazamiento horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo del track */
+  border-radius: 10px; /* Bordes redondeados del track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color de la parte desplazable */
+  border-radius: 10px; /* Bordes redondeados de la parte desplazable */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color de la parte desplazable al pasar el ratón por encima */
+}
