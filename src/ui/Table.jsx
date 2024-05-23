@@ -1,26 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext } from "react"
 
-// const Footer = styled.footer`
-//   background-color: var(--color-grey-50);
-//   display: flex;
-//   justify-content: center;
-//   padding: 1.2rem;
-
-//   /* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */
-//   &:not(:has(*)) {
-//     display: none;
-//   }
-// `;
-
-// const Empty = styled.p`
-//   font-size: 1.6rem;
-//   font-weight: 500;
-//   text-align: center;
-//   margin: 2.4rem;
-// `;
-
-
 const TableContext = createContext()
 
 const commonRow = "grid gap-x-10 items-center"
@@ -52,7 +32,7 @@ function Row({ children }) {
   const { columns } = useContext(TableContext)
 
   return (
-    <div role="row" className={`${commonRow} ${columns} bg-white py-6 px-8`}>
+    <div role="row" className={`${commonRow} ${columns} bg-white py-6 px-8 text-2xl`}>
       {children}
     </div>
   )
@@ -60,6 +40,12 @@ function Row({ children }) {
 }
 
 function Body({ data, render }) {
+
+  if(!data.length) return(
+    <section className="text-center font-medium text-xl m-8">
+      No data found.
+    </section>
+  )
 
   return (
     <section className="my-2">
@@ -69,6 +55,15 @@ function Body({ data, render }) {
 
 }
 
+function Footer({children}) {
+  return(
+    <footer className="bg-slate-50 flex justify-start border-t-2 p-4">
+      {children}
+    </footer>
+  )
+}
+
 Table.Header = Header
 Table.Row = Row
 Table.Body = Body
+Table.Footer = Footer
