@@ -1,16 +1,21 @@
 import { useNavigate } from "react-router-dom"
 import { HiOutlineArrowUpOnSquare, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2"
+import { useDeleteProject } from "./useDeleteProject"
+import { formatDate } from "../../utils/helpers"
 import Menus from "../../ui/Menus"
 import Modal from "../../ui/Modal"
 import EditProjectForm from "./EditProjectForm"
-import { useDeleteProject } from "./useDeleteProject"
-import { formatDate } from "../../utils/helpers"
-import ProgressBar from "../tasks/ProgressBar"
 
 /* eslint-disable react/prop-types */
 export default function ProjectChart({ project }) {
 
   const navigate = useNavigate()
+
+  const inTime = project.status === "In Progress" && new Date() < new Date(project.finishDate)
+
+  const outOfTime = project.status === "In Progress" && new Date().toDateString() > new Date(project.finishDate).toDateString()
+
+  const deliverToday = project.status === "In Progress" && new Date().toDateString() === new Date(project.finishDate).toDateString()
 
   const { deleteProject } = useDeleteProject()
 
@@ -46,9 +51,18 @@ export default function ProjectChart({ project }) {
         </Modal>
       </div>
       <div className="flex justify-between items-center">
-        <div className="w-2/3">  
-          <p className="text-2xl mb-2">Progress</p>
-          <ProgressBar progress={50} />
+        <div className="w-2/3">
+          <p className="text-2xl mb-2">Status</p>
+          <span className={`${inTime ? "bg-green-500" : deliverToday ? "bg-yellow-500" : outOfTime ? "bg-red-500 text-white" : "bg-green-500"} px-2 py-1 rounded-full text-lg`}>{
+            inTime
+              ? "In time"
+              : outOfTime
+                ? "Out of time"
+                : deliverToday
+                  ? "Deliver today"
+                  : "Delivered"
+          }
+          </span>
         </div>
         <div>
           <p className="text-2xl mb-2">Delivery Date</p>
