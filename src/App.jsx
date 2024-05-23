@@ -5,7 +5,7 @@ import AppLayout from "./ui/AppLayout"
 import Dashboard from "./pages/Dashboard"
 import Projects from "./pages/Projects"
 import Project from "./pages/Project"
-import Task from "./pages/Task"
+import Calendar from "./pages/Calendar"
 import NotFound from "./ui/NotFound"
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:projectId" element={<Project />} />
-            <Route path="task/:taskId" element={<Task />} />
+            <Route path="calendar" element={<Calendar />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

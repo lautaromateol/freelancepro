@@ -31,3 +31,18 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555; /* Color de la parte desplazable al pasar el ratón por encima */
 }
+
+.fc .fc-button {
+  background-color: rgb(79 70 229);
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  border: none;
+}
+
+.fc .fc-button:hover {
+  background-color: "rgb(49 46 129)";
+}
+
+.fc .fc-button:focus {
+  outline: none;
+}
