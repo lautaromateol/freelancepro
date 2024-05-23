@@ -9,8 +9,7 @@ export function useUpdateProject(){
   const { mutate: updateProject, isPending } = useMutation({
     mutationFn: ({data, id}) => updateProjectAPI(data, id),
     onSuccess: () => {
-      queryClient.invalidateQueries(["projects"]),
-      toast.success("Project updated successfully!")
+      queryClient.invalidateQueries(["projects"])
     },
     onError: () => toast.error("Project couldn't be updated. Try again later")
   })
