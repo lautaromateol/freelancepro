@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useCreateTasks } from "./useCreateTasks"
 
 /* eslint-disable react/prop-types */
-export default function CreateTaskForm({ projectId, setOpenInput }) {
+export default function CreateTaskForm({ projectId, setOpenInput, status }) {
 
   const { createTask, isPending } = useCreateTasks()
 
@@ -19,7 +19,7 @@ export default function CreateTaskForm({ projectId, setOpenInput }) {
     const newTask = {
       name,
       user_id: 1,
-      status: "Incomplete",
+      status,
       projectId
     }
 

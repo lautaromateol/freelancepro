@@ -4,31 +4,25 @@ import { useUpdateTask } from "./useUpdateTask";
 /* eslint-disable react/prop-types */
 export default function Task({ task }) {
 
-  const checked = task.status === "Complete"
+  const checked = task.status === "Done"
 
-  const { updateTask, isPending } = useUpdateTask()
+  const { updateTask, isPending: isUpdatingTask } = useUpdateTask()
+
+  const isPending = isUpdatingTask
 
   function handleChange() {
-    const newTask = {
-      ...task,
-      status: checked ? "Incomplete" : "Complete"
-    }
 
-    updateTask({ id: task.id, newTask })
   }
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-4">
-        <input disabled={isPending} onChange={handleChange} checked={checked} type="checkbox" name="check" id="check" />
-        <div className="flex flex-col">
-          <p className={`text-3xl ${checked && "line-through"}`}>{task.name}</p>
-          <p className="text-xl text-gray-500">{task.status}</p>
-        </div>
+    <div className="flex items-center justify-between rounded-lg shadow-sm p-8 bg-slate-50">
+      <div className="flex flex-col items-start">
+        <p className={`text-3xl ${checked && "line-through"}`}>{task.name}</p>
+        <p className="text-xl text-gray-500">{task.status}</p>
       </div>
-      <div className="text-2xl text-gray-500">
+      <time className="text-2xl text-gray-500">
         {formatDate(task.created_at)}
-      </div>
+      </time>
     </div>
   )
 }
