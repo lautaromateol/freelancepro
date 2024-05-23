@@ -3,26 +3,24 @@ import { useState } from "react"
 import AddTaskButton from "./AddTaskButton"
 import CreateTaskForm from "./CreateTaskForm"
 import Task from "./Task"
+import TasksContainer from "./TasksContainer"
 
 export default function Tasks({ tasks, projectId }) {
 
-  const [openInput, setOpenInput] = useState(false)
+  const todoTasks = tasks.filter((task) => task.status === "To-Do")
+  const doingTasks = tasks.filter((task) => task.status === "Doing")
+  const doneTasks = tasks.filter((task) => task.status === "Done")
 
   return (
-    <div>
-      <p className="text-4xl font-semibold mb-6">Tasks</p>
-      <div className="flex flex-col gap-6 mb-10">
-       {tasks?.map((task) => (
-        <Task task={task} key={task.id} />
-       ))}
+    <section>
+      <p className="text-4xl font-semibold mb-8">Tasks</p>
+      <div className="w-full mx-auto">
+        <div className="grid grid-cols-3 gap-8 mb-10">
+          <TasksContainer projectId={projectId} title="To-Do" data={todoTasks} render={(task) => <Task task={task} key={task.id} />} />
+          <TasksContainer projectId={projectId} title="Doing" data={doingTasks} render={(task) => <Task task={task} key={task.id} />} />
+          <TasksContainer projectId={projectId} title="Done" data={doneTasks} render={(task) => <Task task={task} key={task.id} />} />
+        </div>
       </div>
-      {
-        openInput ?
-          <CreateTaskForm projectId={projectId} setOpenInput={setOpenInput} />
-          :
-          <AddTaskButton setOpenInput={setOpenInput} />
-      }
-
-    </div>
+    </section>
   )
 }

@@ -7,6 +7,7 @@ import Input from "../../ui/Input"
 import Textarea from "../../ui/Textarea"
 import Button from "../../ui/Button"
 import { useUpdateProject } from "./useUpdateProject"
+import toast from "react-hot-toast"
 
 export default function EditProjectForm({ project, onCloseModal }) {
 
@@ -20,7 +21,10 @@ export default function EditProjectForm({ project, onCloseModal }) {
 
   function onSubmit(data) {
     updateProject({data, id: project.id}, {
-      onSuccess: () => onCloseModal()
+      onSuccess: () => {
+        toast.success("Project updated successfully!")
+        onCloseModal()
+      }
     })
   }
 
@@ -31,14 +35,14 @@ export default function EditProjectForm({ project, onCloseModal }) {
         <span className="text-3xl font-thin text-tint">Fill out the details to edit the project.</span>
         <FormRow>
           <Label htmlFor="name">Project Name</Label>
-          <Input type="text" id="name" register={register} disabled={isPending} />
+          <Input type="text" id="name" register={register} condition={{ required: "This field is required" }} disabled={isPending} />
           <div className="h-5 text-danger">
             {errors?.name?.message && <p>{errors.name.message}</p>}
           </div>
         </FormRow>
         <FormRow>
           <Label htmlFor="description">Notes</Label>
-          <Textarea rows={5} id="description" register={register} disabled={isPending} />
+          <Textarea rows={5} id="description" register={register} condition={{ required: "This field is required" }} disabled={isPending} />
           <div className="h-5 text-danger">
             {errors?.description?.message && <p>{errors.description.message}</p>}
           </div>
@@ -46,14 +50,14 @@ export default function EditProjectForm({ project, onCloseModal }) {
         <div className="grid grid-cols-4 gap-4">
           <FormRow className="col-span-2">
             <Label htmlFor="startDate">Start Date</Label>
-            <Input type="date" id="startDate" register={register} disabled={isPending} />
+            <Input type="date" id="startDate" register={register} condition={{ required: "This field is required" }} disabled={isPending} />
             <div className="h-5 text-danger">
             {errors?.startDate?.message && <p>{errors.startDate.message}</p>}
           </div>
           </FormRow>
           <FormRow className="col-span-2">
             <Label htmlFor="finishDate">Finish Date</Label>
-            <Input type="date" id="finishDate" register={register} disabled={isPending} />
+            <Input type="date" id="finishDate" register={register} condition={{ required: "This field is required" }} disabled={isPending} />
             <div className="h-5 text-danger">
             {errors?.finishDate?.message && <p>{errors.finishDate.message}</p>}
           </div>
@@ -61,7 +65,7 @@ export default function EditProjectForm({ project, onCloseModal }) {
         </div>
         <FormRow>
           <Label htmlFor="budget">Budget</Label>
-          <Input type="number" id="budget" min={1} register={register} disabled={isPending} />
+          <Input type="number" id="budget" min={1} register={register} condition={{ required: "This field is required" }} disabled={isPending} />
           <div className="h-5 text-danger">
             {errors?.name?.message && <p>{errors.budget.message}</p>}
           </div>
