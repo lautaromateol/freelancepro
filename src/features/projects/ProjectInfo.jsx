@@ -4,7 +4,7 @@ import ProgressBar from "../tasks/ProgressBar";
 /* eslint-disable react/prop-types */
 export default function ProjectInfo({ project, tasks }) {
 
-  const progress = !tasks.length ? 0 : ((tasks.filter(({status}) => status === "Complete").length) / tasks.length) * 100
+  const progress = !tasks.length ? 0 : ((tasks.filter(({status}) => status === "Done").length) / tasks.length) * 100
 
   return (
     <div className="grid grid-cols-2 gap-y-6">
