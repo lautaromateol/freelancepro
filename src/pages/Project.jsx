@@ -1,6 +1,5 @@
 import { useProject } from "../features/projects/useProject"
 import { useTasks } from "../features/tasks/useTasks"
-import { useExpenses } from "../features/expenses/useExpenses"
 import Spinner from "../ui/Spinner"
 import PageSection from "../ui/PageSection"
 import PageHeading from "../ui/PageHeader"
@@ -18,12 +17,10 @@ export default function Project() {
 
   const { tasks, isPending: isLoadingTasks } = useTasks()
 
-  const { expenses, isPending: isLoadingExpenses } = useExpenses()
-
-  const isPending = isLoadingProjects || isLoadingTasks || isLoadingExpenses
+  const isPending = isLoadingProjects || isLoadingTasks
 
   if (isPending) return <Spinner />
-
+  
   return (
     <PageSection>
       <header className="flex items-center justify-between shadow-md rounded-lg border border-1 p-8">
@@ -46,7 +43,7 @@ export default function Project() {
           <p className="text-4xl font-semibold mb-8">Expenses</p>
           <CreateExpense />
         </div>
-        <ExpensesTable expenses={expenses} />
+        <ExpensesTable />
       </section> : null}
     </PageSection>
   )

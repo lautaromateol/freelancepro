@@ -1,8 +1,15 @@
 /* eslint-disable react/prop-types */
+import Spinner from "../../ui/Spinner"
 import Table from "../../ui/Table"
 import ExpenseRow from "./ExpenseRow"
+import { useExpenses } from "./useExpenses"
 
-export default function ExpensesTable({expenses}) {
+export default function ExpensesTable() {
+
+  const { expenses, isPending } = useExpenses()
+
+  if(isPending) return <Spinner />
+
   return (
     <Table columns={"grid-cols-[1fr_2fr_1fr_1fr_1fr_1fr]"}>
       <Table.Header>
