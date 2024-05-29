@@ -9,8 +9,8 @@ export function useSignup() {
 
   const { mutate: signUp, isPending } = useMutation({
     mutationFn: ({fullName, email, password}) => signUpAPI(fullName, email, password),
-    onSuccess: (user) => {
-      toast.success(`Account created successfully! Check ${user.email} to confirm your account.`)
+    onSuccess: ({user}) => {
+      toast.success(`Account created successfully! Check ${user.user_metadata.email} to confirm your account.`)
       navigate("/login")
     }
   })
