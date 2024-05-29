@@ -10,7 +10,18 @@ export async function getTasks(projectId) {
   if (error) throw new Error(error)
 
   return tasks
+}
 
+export async function getTasksById(userId) {
+
+  const { data: tasks, error } = await supabase
+    .from('tasks')
+    .select('*')
+    .eq("user_id", userId)
+
+  if (error) throw new Error(error)
+
+  return tasks
 }
 
 export async function createTask(task) {

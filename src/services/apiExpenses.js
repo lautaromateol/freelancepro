@@ -12,6 +12,18 @@ export async function getExpenses(projectId) {
   return expenses
 }
 
+export async function getExpensesById(userId) {
+
+  const { data: expenses, error } = await supabase
+    .from("expenses")
+    .select("*")
+    .eq("user_id", userId)
+
+  if (error) throw new Error(error)
+
+  return expenses
+}
+
 export async function createExpense(expense) {
   const { data, error } = await supabase
     .from("expenses")
