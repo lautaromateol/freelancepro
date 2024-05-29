@@ -10,6 +10,7 @@ import CreateExpense from "../features/expenses/CreateExpense"
 import EditProjectButton from "../features/projects/EditProjectButton"
 import DeleteProjectButton from "../features/projects/DeleteProjectButton"
 import ProjectDescription from "../features/projects/ProjectDescription"
+import { useUser } from "../features/auth/useUser"
 
 export default function Project() {
 
@@ -17,7 +18,9 @@ export default function Project() {
 
   const { tasks, isPending: isLoadingTasks } = useTasks()
 
-  const isPending = isLoadingProjects || isLoadingTasks
+  const { user, isPending: isLoadingUser } = useUser()
+
+  const isPending = isLoadingProjects || isLoadingTasks || isLoadingUser
 
   if (isPending) return <Spinner />
   
@@ -37,11 +40,11 @@ export default function Project() {
         <ProjectInfo tasks={tasks} project={project} />
         <ProjectDescription project={project} />
       </section>
-      <Tasks tasks={tasks} projectId={project.id} />
+      <Tasks userId={user.id} tasks={tasks} project={project} />
       {project.budget ? <section>
         <div className="flex items-center justify-between">
           <p className="text-4xl font-semibold mb-8">Expenses</p>
-          <CreateExpense />
+          <CreateExpense userId={user.id} />
         </div>
         <ExpensesTable />
       </section> : null}
