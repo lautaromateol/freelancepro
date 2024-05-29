@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form"
+import { useParams } from "react-router-dom"
+import { useCreateExpenses } from "./useCreateExpenses"
+import { useUser } from "../auth/useUser"
 import Form from "../../ui/Form"
 import FormRow from "../../ui/FormRow"
 import Label from "../../ui/Label"
@@ -7,10 +10,8 @@ import Input from "../../ui/Input"
 import Select from "../../ui/Select"
 import Textarea from "../../ui/Textarea"
 import Button from "../../ui/Button"
-import { useParams } from "react-router-dom"
-import { useCreateExpenses } from "../expenses/useCreateExpenses"
 
-export default function CreateExpenseForm({ onCloseModal }) {
+export default function CreateExpenseForm({ onCloseModal, userId }) {
 
   const { projectId } = useParams()
 
@@ -24,7 +25,7 @@ export default function CreateExpenseForm({ onCloseModal }) {
     const newExpense = {
       ...data,
       projectId,
-      user_id: 1
+      user_id: userId
     }
 
     createExpense(newExpense, {

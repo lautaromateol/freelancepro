@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useCreateProject } from "./useCreateProject"
+import { isBefore } from "date-fns"
 import Form from "../../ui/Form"
 import FormRow from "../../ui/FormRow"
 import Label from "../../ui/Label"
@@ -9,15 +10,17 @@ import Input from "../../ui/Input"
 import Textarea from "../../ui/Textarea"
 import Button from "../../ui/Button"
 
-export default function CreateProjectForm({ onCloseModal }) {
+export default function CreateProjectForm({ onCloseModal, userId }) {
 
   const [checked, setChecked] = useState(false)
 
-  const { formState, register, handleSubmit } = useForm()
+  const { formState, register, handleSubmit, getValues } = useForm()
 
   const { errors } = formState
 
-  const { createProject, isPending } = useCreateProject()
+  const { createProject, isPending: isLoadingProject } = useCreateProject()
+
+  const isPending = isLoadingProject
 
   function onSubmit(data) {
     const newProject = {
@@ -25,7 +28,7 @@ export default function CreateProjectForm({ onCloseModal }) {
       startDate: new Date(data.startDate),
       finishDate: new Date(data.finishDate),
       budget: checked ? 0 : data.budget,
-      user_id: 1
+      user_id: userId
     }
     createProject(newProject, {
       onSuccess: () => onCloseModal()
@@ -70,9 +73,11 @@ export default function CreateProjectForm({ onCloseModal }) {
               type="date"
               id="startDate"
               register={register}
-              condition={{ required: "This field is required" }}
-              disabled={isPending}
-              placeholder="Enter start date" />
+              condition={{
+                required: "This field is required",
+                validate: (value) => isBefore(new Date(value), new Date(getValues().finishDate)) || "Start date must be before delivery date"
+              }}
+              disabled={isPending} />
             <div className="h-5 text-danger">
               {errors?.startDate?.message && <p>{errors.startDate.message}</p>}
             </div>

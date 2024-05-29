@@ -4,7 +4,7 @@ import AddTaskButton from "./AddTaskButton";
 import CreateTaskForm from "./CreateTaskForm";
 
 /* eslint-disable react/prop-types */
-export default function TasksContainer({ projectId, title, render, data }) {
+export default function TasksContainer({ projectId, title, render, data, userId }) {
 
   const [openInput, setOpenInput] = useState(false)
 
@@ -18,7 +18,7 @@ export default function TasksContainer({ projectId, title, render, data }) {
       {data.map(render)}
       {
         openInput ?
-          <CreateTaskForm status={title} projectId={projectId} setOpenInput={setOpenInput} />
+          <CreateTaskForm userId={userId} status={title} projectId={projectId} setOpenInput={setOpenInput} />
           :
           <AddTaskButton setOpenInput={setOpenInput} />
       }
