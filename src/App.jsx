@@ -7,6 +7,9 @@ import Projects from "./pages/Projects"
 import Project from "./pages/Project"
 import Calendar from "./pages/Calendar"
 import NotFound from "./ui/NotFound"
+import Login from "./pages/Login"
+import ProtectedRoute from "./pages/ProtectedRoute"
+import Register from "./pages/Register"
 
 function App() {
 
@@ -31,7 +34,11 @@ function App() {
       />
       <BrowserRouter>
         <Routes>
-          <Route element={<AppLayout />}>
+          <Route element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }>
             <Route index element={<Navigate to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="projects" element={<Projects />} />
@@ -39,6 +46,8 @@ function App() {
             <Route path="calendar" element={<Calendar />} />
           </Route>
           <Route path="*" element={<NotFound />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
