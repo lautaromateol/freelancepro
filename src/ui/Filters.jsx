@@ -8,6 +8,8 @@ export default function Filters({ options }) {
   const status = searchParams.get("status") || options.at(0).value
 
   function handleClick(value) {
+    const page = searchParams.get("page")
+    if(page) searchParams.set("page", 1)
     searchParams.set("status", value)
     setSearchParams(searchParams)
   }
