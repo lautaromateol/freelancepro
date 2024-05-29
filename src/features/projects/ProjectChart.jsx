@@ -5,17 +5,18 @@ import { formatDate } from "../../utils/helpers"
 import Menus from "../../ui/Menus"
 import Modal from "../../ui/Modal"
 import EditProjectForm from "./EditProjectForm"
+import { isAfter, isBefore, isToday, startOfDay } from "date-fns"
 
 /* eslint-disable react/prop-types */
 export default function ProjectChart({ project }) {
 
   const navigate = useNavigate()
 
-  const inTime = project.status === "In Progress" && new Date() < new Date(project.finishDate)
+  const inTime = project.status === "In Progress" && isBefore(startOfDay(new Date()), startOfDay(new Date(project.finishDate)))
 
-  const outOfTime = project.status === "In Progress" && new Date().toDateString() > new Date(project.finishDate).toDateString()
+  const outOfTime = project.status === "In Progress" && isAfter(startOfDay(new Date()), startOfDay(new Date(project.finishDate)))
 
-  const deliverToday = project.status === "In Progress" && new Date().toDateString() === new Date(project.finishDate).toDateString()
+  const deliverToday = project.status === "In Progress" && isToday(new Date(project.finishDate))
 
   const { deleteProject } = useDeleteProject()
 
@@ -53,7 +54,7 @@ export default function ProjectChart({ project }) {
       <div className="flex justify-between items-center">
         <div className="w-2/3">
           <p className="text-2xl mb-2">Status</p>
-          <span className={`${inTime ? "bg-green-500" : deliverToday ? "bg-yellow-500" : outOfTime ? "bg-red-500 text-white" : "bg-green-500"} px-2 py-1 rounded-full text-lg`}>{
+          <span className={`${inTime ? "bg-green-500" : outOfTime ? "bg-red-500 text-white" : deliverToday ? "bg-yellow-500" : "bg-green-500"} px-2 py-1 rounded-full text-lg`}>{
             inTime
               ? "In time"
               : outOfTime
