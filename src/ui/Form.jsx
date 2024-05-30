@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 export default function Form({children, onSubmit}) {
   return (
-    <form className="w-[40rem] bg-slate-50 space-y-8" onSubmit={onSubmit}>
+    <form className="w-[20rem] space-y-4" onSubmit={onSubmit}>
       {children}
     </form>
   )

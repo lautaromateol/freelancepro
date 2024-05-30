@@ -4,10 +4,10 @@ import Nav from "./Nav";
 
 export default function AppLayout() {
   return (
-    <div className="grid grid-cols-[28rem_1fr] grid-rows-[auto_1fr] h-screen">
+    <div className="grid grid-cols-[18rem_1fr] grid-rows-[auto_1fr] h-screen">
       <Header />
       <Nav />
-      <main className="p-16 overflow-y-auto">
+      <main className="p-10 overflow-y-auto">
         <Outlet />
       </main>
     </div>

@@ -1,17 +1,16 @@
-import { useState } from "react"
 import { useCreateTasks } from "./useCreateTasks"
+import { useForm } from "react-hook-form"
+import Input from "../../ui/Input"
 
 /* eslint-disable react/prop-types */
 export default function CreateTaskForm({ projectId, setOpenInput, status, userId }) {
 
   const { createTask, isPending } = useCreateTasks()
 
-  const [name, setName] = useState("")
+  const { register, handleSubmit } = useForm()
 
-  function handleSubmit(e) {
-    e.preventDefault()
-
-    if(!name) {
+  function onSubmit({name}) {
+    if (!name) {
       setOpenInput(false)
       return
     }
@@ -30,14 +29,17 @@ export default function CreateTaskForm({ projectId, setOpenInput, status, userId
   }
 
   return (
-    <form className="flex items-center" onSubmit={handleSubmit}>
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="w-full text-2xl border-b-2 border-shade focus:border-primary focus:outline-none"
+    <form className="flex items-center" onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        register={register}
+        id="name"
         placeholder="Enter task name"
         disabled={isPending}
-        type="text" />
+        type="text"
+      />
     </form>
   )
 }
+
+
+

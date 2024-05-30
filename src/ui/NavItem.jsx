@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom"
 
 export default function NavItem({children, icon, to}) {
   return (
-      <li className="p-4 text-3xl text-slate-800 rounded-r-full hover:bg-slate-100 hover:text-indigo-600">
+      <li className="p-2 text-xl text-slate-800 rounded-r-full hover:bg-slate-100 hover:text-tremor-brand-emphasis">
         <NavLink
           className={({ isActive }) => {
-            return `flex items-center justify-start gap-4 ${isActive && "text-indigo-600"}`
+            return `flex items-center justify-start gap-4 ${isActive && "text-tremor-brand"}`
           }}
           to={to}>
           {icon}

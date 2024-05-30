@@ -8,7 +8,7 @@ const commonRow = "grid gap-x-10 items-center"
 export default function Table({ children, columns }) {
   return (
     <TableContext.Provider value={{ columns }}>
-      <div className="border-2 text-xl rounded-sm overflow-hidden">
+      <div className="border-2 text-tremor-default rounded-md overflow-hidden">
         {children}
       </div>
     </TableContext.Provider>
@@ -20,7 +20,7 @@ function Header({ children }) {
   const { columns } = useContext(TableContext)
 
   return (
-    <header role="row" className={`${commonRow} ${columns} py-6 px-8 bg-slate-50 border-b-2 uppercase tracking-wider font-medium`}>
+    <header role="row" className={`${commonRow} ${columns} p-4 bg-tremor-background-muted border-b-2 uppercase tracking-wider font-medium`}>
       {children}
     </header>
   )
@@ -32,7 +32,7 @@ function Row({ children }) {
   const { columns } = useContext(TableContext)
 
   return (
-    <div role="row" className={`${commonRow} ${columns} bg-white py-6 px-8 text-2xl`}>
+    <div role="row" className={`${commonRow} ${columns} bg-tremor-background dark:bg-dark-tremor-background p-4 text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong`}>
       {children}
     </div>
   )

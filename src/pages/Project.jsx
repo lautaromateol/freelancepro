@@ -26,12 +26,12 @@ export default function Project() {
   
   return (
     <PageSection>
-      <header className="flex items-center justify-between shadow-md rounded-lg border border-1 p-8">
+      <header className="flex items-center justify-between bg-tremor-background dark:bg-dark-tremor-background shadow-md rounded-md border border-1 p-4">
         <div>
           <PageHeading>{project.name}</PageHeading>
-          <span className="inline-block bg-green-200 text-green-800 text-xl rounded-lg p-2">{project.status}</span>
+          <span className="inline-block bg-green-200 text-green-800 text-tremor-default rounded-md p-1">{project.status}</span>
         </div>
-        <div className="flex items-center justify-end gap-4 w-[30rem]">
+        <div className="flex items-center justify-end gap-2 w-[20rem]">
           <EditProjectButton project={project} />
           <DeleteProjectButton project={project} />
         </div>
@@ -43,7 +43,7 @@ export default function Project() {
       <Tasks userId={user.id} tasks={tasks} project={project} />
       {project.budget ? <section>
         <div className="flex items-center justify-between">
-          <p className="text-4xl font-semibold mb-8">Expenses</p>
+          <p className="text-tremor-title font-semibold mb-4">Expenses</p>
           <CreateExpense userId={user.id} />
         </div>
         <ExpensesTable />

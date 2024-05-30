@@ -48,7 +48,7 @@ function Toggle({id}) {
 
   return(
     <button>
-      <HiEllipsisHorizontal className="text-3xl font-bold" onClick={handleClick} />
+      <HiEllipsisHorizontal className="text-tremor-title font-bold" onClick={handleClick} />
     </button>
   )
 
@@ -63,7 +63,7 @@ function List({children, id}) {
 
   
   if(openId === id) return(
-    <ul style={{ right: `${positionX}px`, top: `${positionY}px` }} className="fixed bg-white rounded-lg shadow-md h-[15rem] p-6 flex flex-col justify-between">
+    <ul style={{ right: `${positionX}px`, top: `${positionY}px` }} className="fixed bg-tremor-background dark:bg-dark-tremor-background rounded-md shadow-md h-[10rem] border p-4 flex flex-col justify-between">
       {children}
     </ul>
   )
@@ -80,7 +80,7 @@ function Button({children, onClick, icon}) {
   }
   
   return(
-    <li className="hover:bg-gray-100 px-8 py-4 text-2xl">
+    <li className="hover:bg-tremor-background-subtle px-4 py-2 text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong">
       <button className="flex items-center justify-center gap-2" onClick={handleClick}>
         {icon}
         {children}

@@ -2,8 +2,8 @@
 export default function ProjectDescription({project}) {
   return (
     <div>
-      <p className="text-4xl font-semibold mb-8">Notes</p>
-      <article className="p-4 shadow-sm rounded-lg border border-1 text-2xl">
+      <p className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold mb-4">Notes</p>
+      <article className="p-2 shadow-sm rounded-md border border-1 text-tremor-default">
         {project.description}
       </article>
     </div>

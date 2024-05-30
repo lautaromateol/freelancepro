@@ -7,10 +7,15 @@ import Spinner from '../ui/Spinner'
 import PageSection from '../ui/PageSection';
 import PageHeading from '../ui/PageHeader';
 import PageSubHeading from '../ui/PageSubHeading';
+import { useUser } from '../features/auth/useUser';
 
 export default function Calendar() {
 
-  const { projects, isPending } = useProjects()
+  const { user, isPending: isLoadingUser } = useUser()
+
+  const { projects, isPending: isLoadingProjects } = useProjects(user.id)
+
+  const isPending = isLoadingUser || isLoadingProjects
 
   if (isPending) return <Spinner />
 
@@ -58,10 +63,10 @@ const renderEventContent = (eventInfo) => {
 
   return (
     <Link to={`/projects/${eventInfo.event.id}`} className="flex items-center justify-center mx-auto bg-slate-100 px-2 py-1 rounded-lg border shadow-sm gap-4 cursor-pointer">
-      <HiOutlineCalendar className={`${title.split(" ").includes("due") ? "text-red-500" : "text-green-500"} text-5xl`} />
+      <HiOutlineCalendar className={`${title.split(" ").includes("due") ? "text-danger" : "text-green-500"} text-tremor-title`} />
       <div className="flex flex-col items-start">
-        <p className="text-xl font-medium text-wrap">{projectName}</p>
-        <span className="text-xl">{`${title.split(" ").includes("due") ? "Due" : "Start"} date`}</span>
+        <p className="text-tremor-default font-medium text-wrap">{projectName}</p>
+        <span className="text-tremor-default">{`${title.split(" ").includes("due") ? "Due" : "Start"} date`}</span>
       </div>
     </Link>
   );

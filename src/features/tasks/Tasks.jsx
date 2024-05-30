@@ -85,7 +85,7 @@ export default function Tasks({ tasks: initialTasks, project, userId }) {
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
       <section>
-        <p className="text-4xl font-semibold mb-8">Tasks</p>
+        <p className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold mb-4">Tasks</p>
         <div className="w-full mx-auto">
           <div className="grid grid-cols-3 gap-8 mb-10">
             <SortableContext items={todoTasks} strategy={verticalListSortingStrategy}>

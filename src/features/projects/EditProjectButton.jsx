@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
-import EditProjectForm from "./EditProjectForm";
+import CreateProjectForm from "./CreateProjectForm";
 
 export default function EditProjectButton({ project }) {
   return (
@@ -12,7 +12,7 @@ export default function EditProjectButton({ project }) {
         </Button>
       </Modal.Opens>
       <Modal.Window window="edit-form">
-        <EditProjectForm project={project} />
+        <CreateProjectForm projectToEdit={project} />
       </Modal.Window>
     </Modal>
   )

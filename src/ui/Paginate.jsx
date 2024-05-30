@@ -5,6 +5,8 @@ import { RESULTS_PER_PAGE } from "../utils/constants";
 
 export default function Paginate({count}) {
 
+  console.log(count)
+
   const [searchParams, setSearchParams] = useSearchParams()
 
   const currentPage = Number(searchParams.get("page")) || 1
@@ -32,14 +34,14 @@ export default function Paginate({count}) {
   }
 
   return (
-    <div className="flex justify-between items-center text-2xl">
+    <div className="flex justify-between items-center text-tremor-default">
       <p>Showing <strong>{start}-{end}</strong> of <strong>{count}</strong> results</p>
       <div className="flex items-center justify-center gap-2">
-        <button disabled={disabledPrev} onClick={handlePrevious} className={`${disabledPrev ? "cursor-not-allowed" : " text-white bg-primary hover:bg-tint transition-colors"} p-2 font-medium flex items-center gap-2 rounded-lg`}>
+        <button disabled={!count || disabledPrev} onClick={handlePrevious} className={`${disabledPrev ? "cursor-not-allowed" : "text-white bg-tremor-brand hover:bg-tremor-brand-emphasis transition-colors"} p-1 font-medium flex items-center gap-1 rounded-md`}>
           <HiOutlineChevronLeft />
           Previous
         </button>
-        <button disabled={disabledNext} onClick={handleNext} className={`${disabledNext ? "cursor-not-allowed" : " text-white bg-primary hover:bg-tint transition-colors"} p-2 font-medium flex items-center gap-2 rounded-lg`}>
+        <button disabled={!count || disabledNext} onClick={handleNext} className={`${disabledNext ? "cursor-not-allowed" : "text-white bg-tremor-brand hover:bg-tremor-brand-emphasis transition-colors"} p-1 font-medium flex items-center gap-1 rounded-md`}>
           Next
           <HiOutlineChevronRight />
           </button>
