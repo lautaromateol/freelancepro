@@ -6,27 +6,29 @@ import RecentExpenses from "./RecentExpenses"
 function calculateDistribution(expenses) {
   const categories = [...new Set(expenses.map(({category}) => category))]
 
-  const expensesAmmount = expenses.reduce((acc, obj) => acc + obj.ammount, 0)
+  // const expensesAmmount = expenses.reduce((acc, obj) => acc + obj.ammount, 0)
 
   const categoriesExpenses = categories.map((category) => {
     return {
-      category,
-      ammount: 0
+      name: category,
+      value: 0
     }
   })
 
   expenses.forEach((expense) => {
-    const index = categoriesExpenses.findIndex((obj) => obj.category === expense.category)
+    const index = categoriesExpenses.findIndex((obj) => obj.name === expense.category)
 
-    categoriesExpenses[index].ammount += expense.ammount
+    categoriesExpenses[index].value += expense.ammount
   })
 
-  return categoriesExpenses.map((obj) => {
-    return {
-      category: obj.category,
-      distribution: (obj.ammount / expensesAmmount) * 100
-    }
-  })
+  return categoriesExpenses
+
+  // return categoriesExpenses.map((obj) => {
+  //   return {
+  //     name: obj.category,
+  //     value: (obj.ammount / expensesAmmount) * 100
+  //   }
+  // })
 }
 
 function getRecentExpenses(projects, expenses) {

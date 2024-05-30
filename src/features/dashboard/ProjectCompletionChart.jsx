@@ -1,26 +1,27 @@
 /* eslint-disable react/prop-types */
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { Card } from '../../ui/Card';
+import { BarChart } from '@tremor/react';
+
+const dataFormatter = (number) =>
+  Intl.NumberFormat('us').format(number).toString();
 
 const ProjectCompletionChart = ({ data }) => {
   return (
-    <div className="bg-slate-50 rounded-lg border p-8">
-      <h2 className='text-3xl font-semibold text-center mb-8'>Project Completion</h2>
-    <BarChart
-      width={800}
-      height={400}
-      data={data}
-      margin={{
-        top: 5, right: 30, left: 20, bottom: 5,
-      }}
-    >
-      <CartesianGrid stroke='transparent' />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="completionPercentage" name="Completion Percentage" fill="rgb(79 70 229)" />
-    </BarChart>
-  </div>
+    <Card>
+      <h3 className="text-tremor-title text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis">
+        Project Completion Chart
+      </h3>
+
+      <BarChart
+        className="h-[30rem] mt-6"
+        data={data}
+        index="name"
+        categories={['Completion Percentage']}
+        colors={['indigo']}
+        valueFormatter={dataFormatter}
+        yAxisWidth={48}
+      />
+    </Card>
   );
 };
 

@@ -9,7 +9,7 @@ function calculateCompletion(projects, tasks) {
     const completionPercentage = projectTasks.length ? ((projectTasks.filter((task) => task.status === "Done").length) / projectTasks.length) * 100 : 0
     return {
       name: project.name,
-      completionPercentage,
+      "Completion Percentage": completionPercentage,
     }
   })
 }
