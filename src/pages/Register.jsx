@@ -18,7 +18,7 @@ export default function Register() {
 
   return (
     <main className="flex items-center justify-center min-h-screen">
-      <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg shadow-md bg-slate-50 p-4 space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg shadow-md bg-tremor-background-muted dark:bg-dark-tremor-background-muted p-4 space-y-4">
         {/* <Logo /> */}
         <h2 className="text-tremor-metric text-tremor-brand dark:text-dark-tremor-brand font-bold">Sign-up</h2>
         <span className="text-tremor-title font-thin text-tremor-brand-emphasis dark:text-dark-tremor-brand-emphasis">Fill out your credentials to start creating projects.</span>
@@ -46,7 +46,7 @@ export default function Register() {
           <Label htmlFor="password">Password</Label>
           <Input type="password" id="password" register={register} condition={{ required: "This field is required" }} disabled={isPending} />
         </FormRow>
-        <Link className="inline-block text-tremor-label text-tint underline mt-4" to="/login">Already have an account? Sign-in</Link>
+        <Link className="inline-block text-tremor-label text-tint dark:text-dark-tremor-brand-emphasis underline mt-4" to="/login">Already have an account? Sign-in</Link>
         <Button disabled={isPending} type="submit">Sign-up</Button>
       </form>
     </main>
