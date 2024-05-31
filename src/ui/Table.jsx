@@ -8,7 +8,7 @@ const commonRow = "grid gap-x-10 items-center"
 export default function Table({ children, columns }) {
   return (
     <TableContext.Provider value={{ columns }}>
-      <div className="border-2 text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong rounded-md overflow-hidden">
+      <div className="border-2 text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong rounded-md h-[20rem] overflow-y-auto">
         {children}
       </div>
     </TableContext.Provider>
@@ -42,7 +42,7 @@ function Row({ children }) {
 function Body({ data, render }) {
 
   if(!data.length) return(
-    <section className="text-center font-medium text-tremor-title dark:text-dark-tremor-content-strong m-8">
+    <section className="text-center font-medium text-tremor-title dark:text-dark-tremor-content-strong overflow-y-auto m-8">
       No data found.
     </section>
   )
