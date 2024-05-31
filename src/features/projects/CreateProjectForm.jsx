@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { useCreateProject } from "./useCreateProject"
 import { useUpdateProject } from "./useUpdateProject"
 import { isBefore } from "date-fns"
+import { Textarea } from "@tremor/react"
 import Form from "../../ui/Form"
 import FormRow from "../../ui/FormRow"
 import Label from "../../ui/Label"
 import Input from "../../ui/Input"
-import Textarea from "../../ui/Textarea"
 import Button from "../../ui/Button"
 import toast from "react-hot-toast"
 
@@ -24,7 +24,7 @@ export default function CreateProjectForm({ onCloseModal, userId, projectToEdit 
 
   const [checked, setChecked] = useState(isEditSession ? projectToEdit?.budget === 0 : false)
 
-  const { formState, register, handleSubmit, getValues } = useForm({
+  const { formState, register, handleSubmit, getValues, control } = useForm({
     defaultValues: isEditSession ? editValues : {}
   })
 
@@ -66,19 +66,27 @@ export default function CreateProjectForm({ onCloseModal, userId, projectToEdit 
             register={register}
             condition={{ required: "This field is required" }}
             disabled={isPending}
-            errorMessage={errors?.name?.message ?? ""}
+            errorMessage={errors?.name?.message}
             placeholder="Enter project name" />
         </FormRow>
         <FormRow>
           <Label htmlFor="description">Notes</Label>
-          <Textarea
-            rows={5}
-            id="description"
-            register={register}
-            condition={{ required: "This field is required" }}
-            disabled={isPending}
-            errorMessage={errors?.description?.message ?? ""}
-            placeholder="Enter important information about the project" />
+          <Controller
+            name="description"
+            control={control}
+            defaultValue={isEditSession ? editValues.description : ""}
+            rules={{ required: "This field is required" }}
+            render={({ field }) => (
+              <Textarea
+                {...field}
+                rows={5}
+                id="description"
+                disabled={isPending}
+                error={errors?.description?.message ? true : false}
+                errorMessage={errors?.description?.message}
+                placeholder="Enter important information about the project" />
+            )}
+          />
         </FormRow>
         <div className="grid grid-cols-4 gap-4">
           <FormRow className="col-span-2">
@@ -91,7 +99,7 @@ export default function CreateProjectForm({ onCloseModal, userId, projectToEdit 
                 required: "This field is required",
                 validate: (value) => isBefore(new Date(value), new Date(getValues().finishDate)) || "Start date must be before delivery date"
               }}
-              errorMessage={errors?.startDate?.message ?? ""}
+              errorMessage={errors?.startDate?.message}
               disabled={isPending} />
           </FormRow>
           <FormRow className="col-span-2">
@@ -102,7 +110,7 @@ export default function CreateProjectForm({ onCloseModal, userId, projectToEdit 
               register={register}
               condition={{ required: "This field is required" }}
               disabled={isPending}
-              errorMessage={errors?.finishDate?.message ?? ""}
+              errorMessage={errors?.finishDate?.message}
               placeholder="Enter end date" />
           </FormRow>
         </div>
@@ -115,7 +123,7 @@ export default function CreateProjectForm({ onCloseModal, userId, projectToEdit 
             disabled={isPending || checked}
             register={register}
             condition={{ required: checked ? false : "This field is required" }}
-            errorMessage={errors?.budget?.message ?? ""}
+            errorMessage={errors?.budget?.message}
             placeholder="Enter project budget" />
           <div className="flex items-center justify-start gap-2">
             <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />

@@ -40,11 +40,22 @@ export default function CreateExpenseForm({ onCloseModal, userId }) {
         <span className="text-tremor-title font-thin text-tremor-brand-emphasis dark:text-dark-tremor-brand-emphasis">Fill out the details of the expense.</span>
         <FormRow>
           <Label htmlFor="description">Description</Label>
-          <Textarea rows={5} id="description" register={register} condition={{ required: "This field is required" }} disabled={isPending} />
+          <Textarea
+            errorMessage={errors?.description?.message}
+            rows={5}
+            id="description"
+            register={register}
+            condition={{ required: "This field is required" }}
+            disabled={isPending} />
         </FormRow>
         <FormRow>
           <Label htmlFor="budget">Ammount</Label>
-          <Input type="number" id="ammount" min={1} register={register} condition={{ required: "This field is required" }} disabled={isPending} />
+          <Input
+            errorMessage={errors?.ammount?.message}
+            type="number" id="ammount"
+            min={1} register={register}
+            condition={{ required: "This field is required" }}
+            disabled={isPending} />
         </FormRow>
         <FormRow>
           <Label htmlFor="category">Category</Label>
@@ -52,8 +63,14 @@ export default function CreateExpenseForm({ onCloseModal, userId }) {
             name="category"
             control={control}
             defaultValue=""
+            rules={{ required: "This field is required" }}
             render={({ field }) => (
-              <Select {...field} id="category">
+              <Select
+                {...field}
+                id="category"
+                error={errors?.category?.message ? true : false}
+                errorMessage={errors?.category?.message}
+              >
                 <SelectItem value="Tools and Software">Tools and Software</SelectItem>
                 <SelectItem value="Workspace">Workspace</SelectItem>
                 <SelectItem value="Marketing and Advertising">Marketing and Advertising</SelectItem>
@@ -70,8 +87,14 @@ export default function CreateExpenseForm({ onCloseModal, userId }) {
             name="status"
             control={control}
             defaultValue=""
+            rules={{ required: "This field is required" }}
             render={({ field }) => (
-              <Select {...field} id="status">
+              <Select
+                {...field}
+                error={errors?.status?.message ? true : false}
+                errorMessage={errors?.status?.message}
+                id="status"
+              >
                 <SelectItem value="Pending">Pending</SelectItem>
                 <SelectItem value="Paid">Paid</SelectItem>
               </Select>
