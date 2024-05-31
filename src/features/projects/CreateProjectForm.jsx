@@ -130,7 +130,7 @@ export default function CreateProjectForm({ onCloseModal, userId, projectToEdit 
             <Label>No Budget</Label>
           </div>
         </FormRow>
-        <Button disabled={isPending} type="submit">Add project</Button>
+        <Button disabled={isPending} type="submit">{isEditSession ? "Edit Project" : "Create Project"}</Button>
       </Form>
     </div>
   )
