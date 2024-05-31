@@ -29,7 +29,7 @@ export async function signIn(email, password) {
 
 export async function getCurrentUser() {
   const { data: session } = await supabase.auth.getSession();
-  if (!session.session) return null;
+  if (!session.session) return;
 
   const { data, error } = await supabase.auth.getUser();
 
