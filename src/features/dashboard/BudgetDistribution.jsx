@@ -14,6 +14,7 @@ export default function BudgetDistribution({ data }) {
       <DonutChart
         data={data}
         variant="donut"
+        className="h-5/6 mt-5"
         valueFormatter={dataFormatter}
       />
     </Card>

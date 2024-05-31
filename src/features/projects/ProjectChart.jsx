@@ -35,7 +35,7 @@ export default function ProjectChart({ project }) {
           </span>
         </div>
         <div>
-          <p className="text-tremor-default">Delivery Date</p>
+          <p className="text-tremor-default text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis">Delivery Date</p>
           <span className="text-tremor-label text-tremor-content dark:text-dark-tremor-content">{formatDate(project.finishDate)}</span>
         </div>
       </div>

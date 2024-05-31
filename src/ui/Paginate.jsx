@@ -35,13 +35,13 @@ export default function Paginate({count}) {
 
   return (
     <div className="flex justify-between items-center text-tremor-default">
-      <p>Showing <strong>{start}-{end}</strong> of <strong>{count}</strong> results</p>
+      <p className="text-tremor-content-strong dark:text-dark-tremor-content-strong">Showing <strong>{start}-{end}</strong> of <strong>{count}</strong> results</p>
       <div className="flex items-center justify-center gap-2">
-        <button disabled={!count || disabledPrev} onClick={handlePrevious} className={`${disabledPrev ? "cursor-not-allowed" : "text-white bg-tremor-brand hover:bg-tremor-brand-emphasis transition-colors"} p-1 font-medium flex items-center gap-1 rounded-md`}>
+        <button disabled={!count || disabledPrev} onClick={handlePrevious} className={`${disabledPrev ? "cursor-not-allowed text-tremor-content-strong dark:text-dark-tremor-content-strong" : "text-white dark bg-tremor-brand hover:bg-tremor-brand-emphasis transition-colors"} p-1 font-medium flex items-center gap-1 rounded-md`}>
           <HiOutlineChevronLeft />
           Previous
         </button>
-        <button disabled={!count || disabledNext} onClick={handleNext} className={`${disabledNext ? "cursor-not-allowed" : "text-white bg-tremor-brand hover:bg-tremor-brand-emphasis transition-colors"} p-1 font-medium flex items-center gap-1 rounded-md`}>
+        <button disabled={!count || disabledNext} onClick={handleNext} className={`${disabledNext ? "cursor-not-allowed text-tremor-content-strong dark:text-dark-tremor-content-strong" : "text-white bg-tremor-brand hover:bg-tremor-brand-emphasis transition-colors"} p-1 font-medium flex items-center gap-1 rounded-md`}>
           Next
           <HiOutlineChevronRight />
           </button>

@@ -5,7 +5,7 @@ import ProjectRow from "./ProjectRow";
 export default function PendingTasks({ data }) {
 
   return (
-    <Card>
+    <Card height="h-[40rem]">
       <h3 className="text-tremor-title text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis">
         Pending Tasks
       </h3>

@@ -19,10 +19,10 @@ export default function Task({ task }) {
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes} className="flex items-center justify-between rounded-md shadow-sm p-4 bg-tremor-background-muted dark:bg-dark-tremor-brand-muted">
       <div className="flex flex-col items-start">
-        <p className={`text-tremor-title ${checked && "line-through"}`}>{task.name}</p>
-        <p className="text-tremor-label text-tremor-content dark:text-dark-tremor-content">{task.status}</p>
+        <p className={`text-tremor-title dark:text-dark-tremor-content-strong ${checked && "line-through"}`}>{task.name}</p>
+        <p className="text-tremor-label text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis">{task.status}</p>
       </div>
-      <time className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+      <time className="text-tremor-default text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis">
         {formatDate(task.created_at)}
       </time>
     </div>

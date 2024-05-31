@@ -29,16 +29,66 @@
 }
 
 .fc .fc-button {
-  background-color: rgb(79 70 229);
+  background-color: #3b82f6;
   font-size: 1rem;
   text-transform: capitalize;
   border: none;
 }
 
 .fc .fc-button:hover {
-  background-color: "rgb(49 46 129)";
+  background-color: #1d4ed8;
 }
 
 .fc .fc-button:focus {
   outline: none;
+}
+
+/* Archivo: dark-mode-fullcalendar.css */
+
+/* Estilo global para modo oscuro */
+.dark .fc {
+  color: #dcdcdc;
+}
+
+/* Estilos para la cabecera del calendario */
+.dark .fc .fc-toolbar .fc-button {
+  background-color: #3b82f6;
+  border: 1px solid #555;
+  color: #dcdcdc;
+}
+
+.dark .fc .fc-toolbar .fc-button:hover {
+  background-color: #1d4ed8;
+  border-color: #666;
+}
+
+/* Estilos para el contenido del calendario */
+
+.dark .fc .fc-daygrid-day.fc-day-today {
+  background-color: #1d4ed8
+}
+
+.dark .fc .fc-daygrid-day.fc-day-future {
+  color: #dcdcdc;
+}
+
+/* Estilos para los días del mes */
+.dark .fc .fc-daygrid-day-number {
+  color: #dcdcdc;
+}
+
+/* Estilos para los títulos */
+.dark .fc .fc-col-header-cell {
+  /* background-color: #2d2d2d; */
+  border-bottom: 1px solid #444;
+  color: #dcdcdc;
+}
+
+.dark .fc .fc-col-header-cell-cushion {
+  color: #dcdcdc;
+}
+
+/* Estilos para los botones de navegación */
+.dark .fc .fc-toolbar-title {
+  color: #dcdcdc;
 }

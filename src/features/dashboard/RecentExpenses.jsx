@@ -4,7 +4,7 @@ import ExpenseRow from "./ExpenseRow";
 /* eslint-disable react/prop-types */
 export default function RecentExpenses({ data }) {
   return (
-    <Card>
+    <Card height="h-[25rem]">
       <h3 className="text-tremor-title text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis">
         Recent Expenses
       </h3>

@@ -48,7 +48,7 @@ function Toggle({id}) {
 
   return(
     <button>
-      <HiEllipsisHorizontal className="text-tremor-title font-bold" onClick={handleClick} />
+      <HiEllipsisHorizontal className="text-tremor-title dark:text-dark-tremor-content-strong font-bold" onClick={handleClick} />
     </button>
   )
 
@@ -80,7 +80,7 @@ function Button({children, onClick, icon}) {
   }
   
   return(
-    <li className="hover:bg-tremor-background-subtle px-4 py-2 text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong">
+    <li className="rounded-md hover:bg-tremor-background-subtle dark:hover:bg-dark-tremor-background-subtle px-4 py-2 text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong">
       <button className="flex items-center justify-center gap-2" onClick={handleClick}>
         {icon}
         {children}

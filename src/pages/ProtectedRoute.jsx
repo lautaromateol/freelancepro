@@ -8,17 +8,13 @@ export default function ProtectedRoute({ children }) {
 
   const { isPending, isAuthenticated } = useUser()
 
-  const navigate = useNavigate("/")
+  const navigate = useNavigate()
 
   useEffect(() => {
-    if(!isPending && !isAuthenticated) navigate("/login")
+    if(!isAuthenticated && !isPending) navigate("/login")
   }, [isPending, isAuthenticated, navigate])
 
   if(isPending) return <Spinner />
 
-  if(!isPending && isAuthenticated) return (
-    <div>
-      {children}
-    </div>
-  )
+  if(isAuthenticated) return children
 }

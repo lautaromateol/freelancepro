@@ -1,5 +1,7 @@
 export default function Logo() {
   return (
-    <img className="size-[8rem] mx-auto" src="/logo.png" alt="logo"/>
+    <div className="flex items-center justify-center gap-2">
+      <img className="size-[4rem]" src="/logo.png" alt="logo" />
+    </div>
   )
 }

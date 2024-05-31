@@ -43,7 +43,7 @@ export default function Project() {
       <Tasks userId={user.id} tasks={tasks} project={project} />
       {project.budget ? <section>
         <div className="flex items-center justify-between">
-          <p className="text-tremor-title font-semibold mb-4">Expenses</p>
+          <p className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold mb-4">Expenses</p>
           <CreateExpense userId={user.id} />
         </div>
         <ExpensesTable />

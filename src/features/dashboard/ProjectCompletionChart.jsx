@@ -17,7 +17,7 @@ const ProjectCompletionChart = ({ data }) => {
         data={data}
         index="name"
         categories={['Completion Percentage']}
-        colors={['indigo']}
+        colors={['blue']}
         valueFormatter={dataFormatter}
         yAxisWidth={48}
       />

@@ -15,9 +15,9 @@ export default function Filters({ options }) {
   }
 
   return (
-    <div className="flex items-center gap-2 bg-slate-50 p-1 rounded-md shadow-sm">
+    <div className="flex items-center gap-2 bg-tremor-background-muted dark:bg-dark-tremor-background-muted p-1 rounded-md shadow-sm">
       {options.map((option) => (
-        <button key={option.value} onClick={() => handleClick(option.value)} className={`${option.value === status && "bg-tremor-brand text-white hover:bg-tremor-brand-emphasis"} p-1 text-tremor-default rounded-md font-medium transition-colors`}>
+        <button key={option.value} onClick={() => handleClick(option.value)} className={`${option.value === status ? "bg-tremor-brand text-tremor-brand-faint hover:bg-tremor-brand-emphasis" : "text-tremor-content-strong dark:text-dark-tremor-content-strong"} p-1 text-tremor-default rounded-md font-medium transition-colors`}>
           {option.label}
         </button>
       ))}
