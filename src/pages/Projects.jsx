@@ -58,7 +58,7 @@ export default function Projects() {
           <PageHeading>Your Projects</PageHeading>
           <PageSubHeading>View all your projects here.</PageSubHeading>
         </div>
-        <div className="flex items-center">
+        <div className="flex flex-col md:flex-row items-center gap-1">
           <CreateProject />
           <Filters options={options} />
         </div>
