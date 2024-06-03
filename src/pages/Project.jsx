@@ -1,7 +1,6 @@
 import { useProject } from "../features/projects/useProject"
-import { useTasks } from "../features/tasks/useTasks"
-import { useUser } from "../features/auth/useUser"
 import { HiOutlineExclamationTriangle } from "react-icons/hi2"
+import { useTasks } from "../features/tasks/useTasks"
 import { Link } from "react-router-dom"
 import Spinner from "../ui/Spinner"
 import PageSection from "../ui/PageSection"
@@ -17,13 +16,11 @@ import Button from "../ui/Button"
 
 export default function Project() {
 
-  const { project, isPending: isLoadingProjects } = useProject()
+  const { project, isPending: isLoadingProjects} = useProject()
 
   const { tasks, isPending: isLoadingTasks } = useTasks()
 
-  const { user, isPending: isLoadingUser } = useUser()
-
-  const isPending = isLoadingProjects || isLoadingTasks || isLoadingUser
+  const isPending = isLoadingProjects || isLoadingTasks
 
   if (isPending) return <Spinner />
 
@@ -48,19 +45,19 @@ export default function Project() {
           <span className="inline-block bg-green-200 text-green-800 text-tremor-default rounded-md p-1">{project.status}</span>
         </div>
         <div className="flex items-center justify-end gap-2 w-[20rem]">
-          <EditProjectButton project={project} />
-          <DeleteProjectButton project={project} />
+          <EditProjectButton />
+          <DeleteProjectButton />
         </div>
       </header>
       <section className="grid grid-cols-2 gap-x-10">
-        <ProjectInfo tasks={tasks} project={project} />
-        <ProjectDescription project={project} />
+        <ProjectInfo />
+        <ProjectDescription />
       </section>
-      <Tasks userId={user.id} tasks={tasks} project={project} />
+      <Tasks tasks={tasks} project={project} />
       {project.budget ? <section>
         <div className="flex items-center justify-between">
           <p className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold mb-4">Expenses</p>
-          <CreateExpense userId={user.id} />
+          <CreateExpense />
         </div>
         <ExpensesTable />
       </section> : null}

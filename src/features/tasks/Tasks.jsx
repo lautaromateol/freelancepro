@@ -4,10 +4,14 @@ import { DndContext, DragOverlay, closestCenter, PointerSensor, useSensor, useSe
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useUpdateTask } from "./useUpdateTask";
 import { useUpdateProject } from "../projects/useUpdateProject";
+import { useUser } from "../auth/useUser";
 import TasksContainer from "./TasksContainer";
 import Task from "./Task";
+import Spinner from "../../ui/Spinner";
 
-export default function Tasks({ tasks: initialTasks, project, userId }) {
+export default function Tasks({ tasks: initialTasks, project }) {
+
+  const { user, isPending } = useUser()
 
   const [tasks, setTasks] = useState([])
   const [activeTask, setActiveTask] = useState([])
@@ -82,6 +86,8 @@ export default function Tasks({ tasks: initialTasks, project, userId }) {
     setTasks(initialTasks)
   }, [initialTasks])
 
+  if(isPending) return <Spinner />
+
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
       <section>
@@ -90,7 +96,7 @@ export default function Tasks({ tasks: initialTasks, project, userId }) {
           <div className="grid grid-cols-3 gap-8 mb-10">
             <SortableContext items={todoTasks} strategy={verticalListSortingStrategy}>
               <TasksContainer
-                userId={userId}
+                userId={user.id}
                 projectId={project.id}
                 title="To-Do"
                 data={todoTasks}
@@ -99,7 +105,7 @@ export default function Tasks({ tasks: initialTasks, project, userId }) {
             </SortableContext>
             <SortableContext items={doingTasks} strategy={verticalListSortingStrategy}>
               <TasksContainer
-                userId={userId}
+                userId={user.id}
                 projectId={project.id}
                 title="Doing"
                 data={doingTasks}
@@ -108,7 +114,7 @@ export default function Tasks({ tasks: initialTasks, project, userId }) {
             </SortableContext>
             <SortableContext items={doneTasks} strategy={verticalListSortingStrategy}>
               <TasksContainer
-                userId={userId}
+                userId={user.id}
                 projectId={project.id}
                 title="Done"
                 data={doneTasks}

@@ -1,8 +1,19 @@
+import Spinner from "../../ui/Spinner";
 import { formatDate } from "../../utils/helpers";
 import ProgressBar from "../tasks/ProgressBar";
+import { useTasks } from "../tasks/useTasks";
+import { useProject } from "./useProject";
 
 /* eslint-disable react/prop-types */
-export default function ProjectInfo({ project, tasks }) {
+export default function ProjectInfo() {
+
+  const { tasks, isPending: isLoadingTasks } = useTasks()
+
+  const { project, isPending: isLoadingProjects }  = useProject()
+
+  const isPending = isLoadingProjects || isLoadingTasks
+
+  if(isPending) return <Spinner />
 
   const progress = !tasks.length ? 0 : ((tasks.filter(({status}) => status === "Done").length) / tasks.length) * 100
 

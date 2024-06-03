@@ -1,15 +1,21 @@
 /* eslint-disable react/prop-types */
 import { useDeleteProject } from "./useDeleteProject";
+import { useNavigate } from "react-router-dom";
+import { useProject } from "./useProject";
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import { useNavigate } from "react-router-dom";
+import Spinner from "../../ui/Spinner";
 
-export default function DeleteProjectButton({ project }) {
+export default function DeleteProjectButton() {
 
   const navigate = useNavigate()
 
   const { deleteProject, isPending: isDeleting } = useDeleteProject()
+
+  const { project, isPending }  = useProject()
+
+  if(isPending) return <Spinner />
 
   return (
     <Modal>

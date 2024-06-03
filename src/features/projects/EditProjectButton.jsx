@@ -1,9 +1,16 @@
 /* eslint-disable react/prop-types */
+import { useProject } from "./useProject";
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import CreateProjectForm from "./CreateProjectForm";
+import Spinner from "../../ui/Spinner";
 
-export default function EditProjectButton({ project }) {
+export default function EditProjectButton() {
+
+  const { project, isPending }  = useProject()
+
+  if(isPending) return <Spinner />
+
   return (
     <Modal>
       <Modal.Opens opens="edit-form">
