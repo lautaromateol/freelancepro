@@ -15,15 +15,24 @@ const pages = [
   },
 ]
 
-export default function NavList() {
+export default function NavList({ setIsOpen }) {
   return (
-    <ul className="flex gap-2">
-        {pages.map(({name, to}) => (
+    <>
+      <ul className="hidden md:flex gap-2">
+        {pages.map(({ name, to }) => (
           <NavItem to={to} key={name}>
             {name}
           </NavItem>
         ))}
-    </ul>
+      </ul>
+      <ul className="md:hidden flex flex-col items-center justify-center gap-12 min-h-screen w-full bg-tremor-background-muted">
+        {pages.map(({ name, to }) => (
+          <NavItem setIsOpen={setIsOpen} to={to} key={name}>
+            {name}
+          </NavItem>
+        ))}
+      </ul>
+    </>
   )
 }
 
