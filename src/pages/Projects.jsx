@@ -40,42 +40,45 @@ export default function Projects() {
 
   if (isPending) return <Spinner />
 
-  if(status === "all" && !count) return(
+  if (status === "all" && !count) return (
     <section className="flex items-center justify-center">
       <div className="rounded-md bg-tremor-background dark:bg-dark-tremor-background-muted shadow-md p-4 max-w-[20rem]">
-      <HiOutlineFolderOpen className="text-tremor-content-strong dark:text-dark-tremor-content-strong mx-auto size-[2rem] mb-6" />
-      <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
-      <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">It seems that you don&apos;t have any project yet. Start creating something new today!</p>
-      <CreateProject />
-    </div>
-  </section>
+        <HiOutlineFolderOpen className="text-tremor-content-strong dark:text-dark-tremor-content-strong mx-auto size-[2rem] mb-6" />
+        <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
+        <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">It seems that you don&apos;t have any project yet. Start creating something new today!</p>
+        <CreateProject />
+      </div>
+    </section>
   )
 
   return (
     <PageSection>
-      <header className="flex items-center justify-between">
+      <header className="flex flex-col md:flex-row gap-4 items-center justify-between">
         <div>
           <PageHeading>Your Projects</PageHeading>
           <PageSubHeading>View all your projects here.</PageSubHeading>
         </div>
-        <Filters options={options} />
+        <div className="flex items-center">
+          <CreateProject />
+          <Filters options={options} />
+        </div>
       </header>
-      <section className="grid grid-cols-4 gap-6">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {projects.map((project) => (
           <ProjectChart project={project} key={project.id} />
         ))}
       </section>
       {!count ?
-          <section className="flex items-center justify-center">
-      <div className="rounded-md bg-tremor-background dark:bg-dark-tremor-background-muted shadow-md p-4 max-w-[20rem]">
-              <HiOutlineFolderOpen className="text-tremor-content-strong dark:text-dark-tremor-content-strong mx-auto size-[2rem] mb-6" />
-              <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
-              <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">It seems that you don&apos;t have any project with this status.</p>
-              <CreateProject />
-            </div>
-          </section>
-          : null
-        }
+        <section className="flex items-center justify-center">
+          <div className="rounded-md bg-tremor-background dark:bg-dark-tremor-background-muted shadow-md p-4 max-w-[20rem]">
+            <HiOutlineFolderOpen className="text-tremor-content-strong dark:text-dark-tremor-content-strong mx-auto size-[2rem] mb-6" />
+            <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
+            <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">It seems that you don&apos;t have any project with this status.</p>
+            <CreateProject />
+          </div>
+        </section>
+        : null
+      }
       {count ? <Paginate count={count} /> : null}
     </PageSection>
   )

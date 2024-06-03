@@ -34,7 +34,7 @@ export default function TasksStatistics({ projects, tasks }) {
   const pendingTasks = getPendingTasks(projects, tasks)
 
   return (
-    <section className="grid grid-cols-[2.5fr_1fr] gap-4">
+    <section className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-4">
       <ProjectCompletionChart data={data} />
       <PendingTasks data={pendingTasks} />
     </section>

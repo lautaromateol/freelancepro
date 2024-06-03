@@ -39,17 +39,17 @@ export default function Project() {
 
   return (
     <PageSection>
-      <header className="flex items-center justify-between bg-tremor-background dark:bg-dark-tremor-background shadow-md rounded-md border border-1 p-4">
-        <div>
+      <header className="flex flex-col md:flex-row items-center justify-between bg-tremor-background dark:bg-dark-tremor-background shadow-md rounded-md border border-1 p-4">
+        <div className="flex items-center justify-center gap-2 md:block">
           <PageHeading>{project.name}</PageHeading>
           <span className="inline-block bg-green-200 text-green-800 text-tremor-default rounded-md p-1">{project.status}</span>
         </div>
-        <div className="flex items-center justify-end gap-2 w-[20rem]">
+        <div className="flex items-center justify-center md:justify-end gap-2 w-[20rem]">
           <EditProjectButton />
           <DeleteProjectButton />
         </div>
       </header>
-      <section className="grid grid-cols-2 gap-x-10">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <ProjectInfo />
         <ProjectDescription />
       </section>

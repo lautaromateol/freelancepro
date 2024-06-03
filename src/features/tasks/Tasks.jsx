@@ -93,7 +93,7 @@ export default function Tasks({ tasks: initialTasks, project }) {
       <section>
         <p className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold mb-4">Tasks</p>
         <div className="w-full mx-auto">
-          <div className="grid grid-cols-3 gap-8 mb-10">
+          <div className="grid lg:grid-cols-3 gap-8 mb-10">
             <SortableContext items={todoTasks} strategy={verticalListSortingStrategy}>
               <TasksContainer
                 userId={user.id}

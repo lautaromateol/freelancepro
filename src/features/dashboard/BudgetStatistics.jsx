@@ -48,7 +48,7 @@ export default function BudgetStatistics({ projects, expenses }) {
   const recentExpenses = getRecentExpenses(projects, expenses)
 
   return (
-    <section className="grid grid-cols-2 gap-4">
+    <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <RecentExpenses data={recentExpenses} />
       <BudgetDistribution data={expensesDistribution} />
     </section>

@@ -11,7 +11,7 @@ export default function ProjectsSummary({ projects }) {
   const upcoming = projects.filter(({status, finishDate}) => status === "In Progress" && isBefore(startOfDay(new Date()), startOfDay(new Date(finishDate))) || isToday(new Date(finishDate))).length
 
   return (
-    <section className="grid grid-cols-4 gap-4">
+    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <SummaryChart title="Active Projects" icon={<HiOutlineArchiveBox />} data={active} />
       <SummaryChart title="Completed Projects" icon={<HiOutlineCheckCircle />} data={completed} />
       <SummaryChart title="Overdue Projects" icon={<HiOutlineExclamationTriangle />} data={overdue} />

@@ -14,11 +14,11 @@ export default function Header() {
   const { isDarkMode, setDarkMode } = useDarkMode()
 
   return (
-    <header className="flex items-center justify-between px-10 bg-tremor-background-muted dark:bg-dark-tremor-background-muted h-[6rem] border-b border-b-1">
-      <div className="flex items-center gap-4">
+    <header className="hidden md:flex items-center justify-between px-10 bg-tremor-background-muted dark:bg-dark-tremor-background-muted h-[6rem] border-b border-b-1">
+      <nav className="flex items-center gap-4">
         <Logo />
         <NavList />
-      </div>
+      </nav>
       <div className="flex items-center gap-4">
         <p className="text-tremor-default text-tremor-brand">{user.user_metadata.fullName || user.user_metadata.email}</p>
         <button onClick={() => setDarkMode(!isDarkMode)}>

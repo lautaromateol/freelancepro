@@ -42,13 +42,13 @@ function Row({ children }) {
 function Body({ data, render }) {
 
   if(!data.length) return(
-    <section className="text-center font-medium text-tremor-title dark:text-dark-tremor-content-strong overflow-y-auto m-8">
+    <section className="text-center font-medium text-tremor-title dark:text-dark-tremor-content-strong m-8">
       No data found.
     </section>
   )
 
   return (
-    <section className="my-2">
+    <section className="my-2 overflow-x-scroll md:overflow-x-auto">
       {data.map(render)}
     </section>
   )
