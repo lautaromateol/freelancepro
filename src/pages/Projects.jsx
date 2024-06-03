@@ -60,7 +60,7 @@ export default function Projects() {
         </div>
         <Filters options={options} />
       </header>
-      <section className="grid grid-cols-3 gap-6">
+      <section className="grid grid-cols-4 gap-6">
         {projects.map((project) => (
           <ProjectChart project={project} key={project.id} />
         ))}

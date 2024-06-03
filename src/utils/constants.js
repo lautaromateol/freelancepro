@@ -1,1 +1,1 @@
-export const RESULTS_PER_PAGE = 6
+export const RESULTS_PER_PAGE = 8
