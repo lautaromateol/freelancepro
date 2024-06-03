@@ -40,7 +40,7 @@ export default function Header() {
         </div>
       </header>
 
-      <header className="md:hidden sticky bg-tremor-background-muted dark:bg-dark-tremor-background-muted border-b">
+      <header className="md:hidden sticky top-0 z-10 bg-tremor-background-muted dark:bg-dark-tremor-background-muted border-b">
         <div className="flex items-center justify-between py-2 px-5">
           <Logo />
           <div className="flex items-center justify-center gap-4">
