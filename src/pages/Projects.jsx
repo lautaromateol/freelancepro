@@ -9,8 +9,13 @@ import Spinner from "../ui/Spinner"
 import Paginate from "../ui/Paginate"
 import Filters from "../ui/Filters"
 import { useUser } from "../features/auth/useUser"
+import { useSearchParams } from "react-router-dom"
 
 const options = [
+  {
+    label: "All",
+    value: "all"
+  },
   {
     label: "In Progress",
     value: "in-progress"
@@ -23,23 +28,27 @@ const options = [
 
 export default function Projects() {
 
+  const [searchParams] = useSearchParams()
+
+  const status = searchParams.get("status") || "all"
+
   const { user, isPending: isLoadingUser } = useUser()
-  
+
   const { projects, isPending: isLoadingProjects, count } = useProjects(user.id)
 
   const isPending = isLoadingProjects || isLoadingUser
 
   if (isPending) return <Spinner />
 
-  if (projects.length < 1) return (
-      <section className="flex items-center justify-center">
-      <div className="rounded-md bg-tremor-background shadow-md p-4 max-w-[20rem]">
-          <HiOutlineFolderOpen className="mx-auto size-[2rem] mb-6" />
-          <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
-          <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">It seems that you don&apos;t have created any project yet. Start working in something new today!</p>
-          <CreateProject userId={user.id} />
-        </div>
-      </section>
+  if(status === "all" && !count) return(
+    <section className="flex items-center justify-center">
+    <div className="rounded-md bg-tremor-background shadow-md p-4 max-w-[20rem]">
+      <HiOutlineFolderOpen className="mx-auto size-[2rem] mb-6" />
+      <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
+      <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">It seems that you don&apos;t have any project yet. Start creating something new today!</p>
+      <CreateProject userId={user.id} />
+    </div>
+  </section>
   )
 
   return (
@@ -56,7 +65,18 @@ export default function Projects() {
           <ProjectChart project={project} key={project.id} />
         ))}
       </section>
-      <Paginate count={count} />
+      {!count ?
+          <section className="flex items-center justify-center">
+            <div className="rounded-md bg-tremor-background shadow-md p-4 max-w-[20rem]">
+              <HiOutlineFolderOpen className="mx-auto size-[2rem] mb-6" />
+              <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
+              <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">It seems that you don&apos;t have any project with this status.</p>
+              <CreateProject userId={user.id} />
+            </div>
+          </section>
+          : null
+        }
+      {count ? <Paginate count={count} /> : null}
     </PageSection>
   )
 }

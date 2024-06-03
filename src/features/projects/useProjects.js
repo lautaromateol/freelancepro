@@ -9,11 +9,11 @@ export function useProjects(userId) {
 
   const [searchParams] = useSearchParams()
 
-  const statusParam = searchParams.get("status") || "In Progress"
+  const statusParam = searchParams.get("status") || "all"
   
   const status = statusParam.split("-").length > 1 ? statusParam.split("-").map((word) => word.at(0).toUpperCase() + word.slice(1)).join(" ") : statusParam.at(0).toUpperCase() + statusParam.slice(1)
 
-  const filter = !status ? null : { field: "status", value: status }
+  const filter = status === "All" ? null : { field: "status", value: status }
 
   const page = Number(searchParams.get("page")) || 1
 
