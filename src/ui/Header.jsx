@@ -3,9 +3,9 @@ import { HiMenu } from "react-icons/hi";
 import { useUser } from "../features/auth/useUser"
 import { useSignOut } from "../features/auth/useSignOut"
 import { useDarkMode } from "../context/DarkModeContext"
+import { useState } from "react";
 import Logo from "./Logo"
 import NavList from "./NavList"
-import { useState } from "react";
 
 export default function Header() {
 
@@ -40,7 +40,7 @@ export default function Header() {
         </div>
       </header>
 
-      <header className="md:hidden relative bg-tremor-background-muted dark:bg-dark-tremor-background-muted border-b">
+      <header className="md:hidden sticky bg-tremor-background-muted dark:bg-dark-tremor-background-muted border-b">
         <div className="flex items-center justify-between py-2 px-5">
           <Logo />
           <div className="flex items-center justify-center gap-4">
