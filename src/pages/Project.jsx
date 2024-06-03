@@ -26,8 +26,8 @@ export default function Project() {
 
   if (!project) return (
     <section className="flex items-center justify-center">
-      <div className="rounded-md bg-tremor-background shadow-md p-4 max-w-[20rem]">
-        <HiOutlineExclamationTriangle className="mx-auto size-[2rem] mb-6" />
+      <div className="rounded-md bg-tremor-background dark:bg-dark-tremor-background-muted shadow-md p-4 max-w-[20rem]">
+        <HiOutlineExclamationTriangle className="text-tremor-content-strong dark:text-dark-tremor-content-strong mx-auto size-[2rem] mb-6" />
         <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">Project not found!</h4>
         <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">The project that you were looking for was not found at our database.</p>
         <Link to="/projects">
