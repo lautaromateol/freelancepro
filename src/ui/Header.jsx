@@ -3,6 +3,7 @@ import { useUser } from "../features/auth/useUser"
 import { useSignOut } from "../features/auth/useSignOut"
 import { useDarkMode } from "../context/DarkModeContext"
 import Logo from "./Logo"
+import NavList from "./NavList"
 
 export default function Header() {
 
@@ -14,7 +15,10 @@ export default function Header() {
 
   return (
     <header className="flex items-center justify-between px-10 bg-tremor-background-muted dark:bg-dark-tremor-background-muted h-[6rem] border-b border-b-1">
-      <Logo />
+      <div className="flex items-center gap-4">
+        <Logo />
+        <NavList />
+      </div>
       <div className="flex items-center gap-4">
         <p className="text-tremor-default text-tremor-brand">{user.user_metadata.fullName || user.user_metadata.email}</p>
         <button onClick={() => setDarkMode(!isDarkMode)}>

@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom"
 
-export default function NavItem({children, icon, to}) {
+export default function NavItem({children, to}) {
   return (
-      <li className="p-2 text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong hover:text-tremor-brand rounded-r-full dark:hover:text-dark-tremor-brand hover:bg-tremor-background-subtle dark:hover:bg-dark-tremor-background-subtle">
+      <li className="text-tremor-default">
         <NavLink
           className={({ isActive }) => {
-            return `flex items-center justify-start gap-4 ${isActive && "text-tremor-brand"}`
+            return `${isActive ? "text-tremor-brand-emphasis dark:text-dark-tremor-brand-emphasis" : "text-tremor-brand dark:text-dark-tremor-brand"}`
           }}
           to={to}>
-          {icon}
           {children}
         </NavLink>
       </li>
