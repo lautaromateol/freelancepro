@@ -31,11 +31,11 @@ export default function Projects() {
 
   if (isPending) return <Spinner />
 
-  if (!projects) return (
+  if (projects.length < 1) return (
       <section className="flex items-center justify-center">
-        <div className="rounded-md bg-tremor-background-muted p-4 max-w-[20rem] border-2">
+      <div className="rounded-md bg-tremor-background shadow-md p-4 max-w-[20rem]">
           <HiOutlineFolderOpen className="mx-auto size-[2rem] mb-6" />
-          <h4 className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
+          <h4 className="font-semibold text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 text-center">You don&apos;t have any project!</h4>
           <p className="text-text-tremor-default mb-2 text-tremor-content dark:text-dark-tremor-content text-center">It seems that you don&apos;t have created any project yet. Start working in something new today!</p>
           <CreateProject userId={user.id} />
         </div>
