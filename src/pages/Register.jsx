@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
+import { useSignup } from "../features/auth/useSignup";
 import { Link } from "react-router-dom";
 import FormRow from "../ui/FormRow";
 import Input from "../ui/Input";
 import Label from "../ui/Label";
 import Button from "../ui/Button";
-import { useSignup } from "../features/auth/useSignup";
 import LeftSide from "../ui/LeftSide";
 
 export default function Register() {
