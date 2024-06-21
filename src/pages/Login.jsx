@@ -18,9 +18,9 @@ export default function Login() {
   }
 
   return (
-    <div className="grid grid-cols-2 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 w-full">
       <LeftSide />
-      <main className="flex items-center justify-center min-h-screen bg-tremor-background dark:bg-dark-tremor-background">
+      <main className="flex items-center justify-center md:min-h-screen bg-tremor-background dark:bg-dark-tremor-background">
         <form onSubmit={handleSubmit(onSubmit)} className="p-4 space-y-4">
           <h2 className="text-tremor-metric text-tremor-brand dark:text-dark-tremor-brand font-bold">Sign-in to your account</h2>
           <span className="text-tremor-title font-thin text-tremor-brand-emphasis dark:text-dark-tremor-brand-emphasis">Fill out your credentials to enter your account.</span>
