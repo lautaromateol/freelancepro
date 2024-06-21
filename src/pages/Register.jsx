@@ -18,7 +18,7 @@ export default function Register() {
   }
 
   return (
-    <div className="grid grid-cols-2 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 w-full">
       <LeftSide />
       <main className="flex items-center justify-center md:min-h-screen bg-tremor-background dark:bg-dark-tremor-background">
         <form onSubmit={handleSubmit(onSubmit)} className="p-4 space-y-4">
