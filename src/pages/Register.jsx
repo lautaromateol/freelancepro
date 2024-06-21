@@ -5,6 +5,7 @@ import Input from "../ui/Input";
 import Label from "../ui/Label";
 import Button from "../ui/Button";
 import { useSignup } from "../features/auth/useSignup";
+import LeftSide from "../ui/LeftSide";
 
 export default function Register() {
 
@@ -17,8 +18,10 @@ export default function Register() {
   }
 
   return (
-    <main className="flex items-center justify-center min-h-screen">
-      <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg shadow-md bg-tremor-background-muted dark:bg-dark-tremor-background-muted p-4 space-y-4">
+    <div className="grid grid-cols-2 w-full">
+      <LeftSide />
+    <main className="flex items-center justify-center min-h-screen bg-tremor-background dark:bg-dark-tremor-background">
+      <form onSubmit={handleSubmit(onSubmit)} className="p-4 space-y-4">
         {/* <Logo /> */}
         <h2 className="text-tremor-metric text-tremor-brand dark:text-dark-tremor-brand font-bold">Sign-up</h2>
         <span className="text-tremor-title font-thin text-tremor-brand-emphasis dark:text-dark-tremor-brand-emphasis">Fill out your credentials to start creating projects.</span>
@@ -50,5 +53,6 @@ export default function Register() {
         <Button disabled={isPending} type="submit">Sign-up</Button>
       </form>
     </main>
+    </div>
   )
 }
